@@ -1,0 +1,1 @@
+studentarr[i].maths_marks=mark;
