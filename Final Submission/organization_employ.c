@@ -1,52 +1,61 @@
 #include <stdio.h>
-#include <string.h>
 
-struct organization{
-    char orgName[20];
-    int orgId;
-    struct employee{
-        char empName[20];
-        int empId;
-        int empSalary;
+struct Organization{
+    char name[20];
+    int id;
 
-} employee[2];
+    struct Employee{
+        int id;
+        int salary;
+        char name[20];
+    }Employee[2];
+
 };
 
 int main(){
-    struct organization org1;
-    struct organization org2;
-    strcpy(org1.orgName, "Google");
-    org1.orgId=1;
-    strcpy(org1.employee[0].empName, "Dev");
-    org1.employee[0].empId=1;
-    org1.employee[0].empSalary=9999999;
-    strcpy(org1.employee[1].empName, "Rohit");
-    org1.employee[1].empId=2;
-    org1.employee[1].empSalary=20000;
-    strcpy(org2.orgName, "Microsoft");
-    org2.orgId=2;
-    strcpy(org2.employee[0].empName, "Rahul");
-    org2.employee[0].empId=3;
-    org2.employee[0].empSalary=30000;
-    strcpy(org2.employee[1].empName, "Sachin");
-    org2.employee[1].empId=4;
-    org2.employee[1].empSalary=40000;
-    printf("Organization Name: %s\n", org1.orgName);
-    printf("Organization Id: %d\n", org1.orgId);
-    printf("Employee Name: %s\n", org1.employee[0].empName);
-    printf("Employee Id: %d\n", org1.employee[0].empId);
-    printf("Employee Salary: %d\n", org1.employee[0].empSalary);
-    printf("Employee Name: %s\n", org1.employee[1].empName);
-    printf("Employee Id: %d\n", org1.employee[1].empId);
-    printf("Employee Salary: %d\n", org1.employee[1].empSalary);
-    printf("Organization Name: %s\n", org2.orgName);
-    printf("Organization Id: %d\n", org2.orgId);
-    printf("Employee Name: %s\n", org2.employee[0].empName);
-    printf("Employee Id: %d\n", org2.employee[0].empId);
-    printf("Employee Salary: %d\n", org2.employee[0].empSalary);
-    printf("Employee Name: %s\n", org2.employee[1].empName);
-    printf("Employee Id: %d\n", org2.employee[1].empId);
-    printf("Employee Salary: %d\n", org2.employee[1].empSalary);
+    struct Organization o1;
+    printf("Enter the name of the organization: ");
+    scanf("%s", o1.name);
+    printf("Enter the ID of the organization: ");
+    scanf("%d", &o1.id);
+
+    for(int i = 0; i < 2; i++){
+        printf("Enter the name of the employee: ");
+        scanf("%s", o1.Employee[i].name);
+        printf("Enter the ID of the employee: ");
+        scanf("%d", &o1.Employee[i].id);
+        printf("Enter the salary of the employee: ");
+        scanf("%d", &o1.Employee[i].salary);
+    }
+
+    struct Organization o2;
+    printf("Enter the name of the organization: ");
+    scanf("%s", o2.name);
+    printf("Enter the ID of the organization: ");
+    scanf("%d", &o2.id);
+
+    for(int i = 0; i < 2; i++){
+        printf("Enter the name of the employee: ");
+        scanf("%s", o2.Employee[i].name);
+        printf("Enter the ID of the employee: ");
+        scanf("%d", &o2.Employee[i].id);
+        printf("Enter the salary of the employee: ");
+        scanf("%d", &o2.Employee[i].salary);
+    }
+
+    printf("The name of the organization is: %s", o1.name);
+    printf("The ID of the organization is: %d", o1.id);
+    for(int i = 0; i < 2; i++){
+        printf("The name of the employee is: %s", o1.Employee[i].name);
+        printf("The ID of the employee is: %d", o1.Employee[i].id);
+        printf("The salary of the employee is: %d", o1.Employee[i].salary);
+    }
     
-    return 0;
+    printf("The name of the organization is: %s", o2.name);
+    printf("The ID of the organization is: %d", o2.id);
+    for(int i = 0; i < 2; i++){
+        printf("The name of the employee is: %s", o2.Employee[i].name);
+        printf("The ID of the employee is: %d", o2.Employee[i].id);
+        printf("The salary of the employee is: %d", o2.Employee[i].salary);
+    }
 }
