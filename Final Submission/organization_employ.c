@@ -43,19 +43,19 @@ int main(){
         scanf("%d", &o2.Employee[i].salary);
     }
 
-    printf("The name of the organization is: %s", o1.name);
-    printf("The ID of the organization is: %d", o1.id);
+    printf("The name of the organization is: %s\n", o1.name);
+    printf("The ID of the organization is: %d\n", o1.id);
     for(int i = 0; i < 2; i++){
-        printf("The name of the employee is: %s", o1.Employee[i].name);
-        printf("The ID of the employee is: %d", o1.Employee[i].id);
-        printf("The salary of the employee is: %d", o1.Employee[i].salary);
+        printf("The name of the employee is: %s\n", o1.Employee[i].name);
+        printf("The ID of the employee is: %d\n", o1.Employee[i].id);
+        printf("The salary of the employee is: %d\n", o1.Employee[i].salary);
     }
     
-    printf("The name of the organization is: %s", o2.name);
-    printf("The ID of the organization is: %d", o2.id);
+    printf("The name of the organization is: %s\n", o2.name);
+    printf("The ID of the organization is: %d\n", o2.id);
     for(int i = 0; i < 2; i++){
-        printf("The name of the employee is: %s", o2.Employee[i].name);
-        printf("The ID of the employee is: %d", o2.Employee[i].id);
-        printf("The salary of the employee is: %d", o2.Employee[i].salary);
+        printf("The name of the employee is: %s\n", o2.Employee[i].name);
+        printf("The ID of the employee is: %d\n", o2.Employee[i].id);
+        printf("The salary of the employee is: %d\n", o2.Employee[i].salary);
     }
 }

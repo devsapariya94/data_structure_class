@@ -49,7 +49,7 @@ void insert()
         else
         {
             if (rear=MAX-1 && front!=0){
-                rear=0
+                rear=0;
             }
             printf("Inset the element in queue : ");
             scanf("%d", &item);

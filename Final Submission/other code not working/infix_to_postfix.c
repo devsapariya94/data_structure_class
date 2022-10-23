@@ -1,64 +1,86 @@
-#include<stdio.h>
-#include<ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-char stack[100];
-int top = -1;
+char stack[50];
+int top = 0;
 
-void push(char x)
-{
-    stack[++top] = x;
+int is_empty(){
+    return top == -1 ? 1 : 0;
 }
 
-char pop()
-{
-    if(top == -1)
-        return -1;
-    else
-        return stack[top--];
+void push(int item){
+    top++;
+    stack[top] = item;
 }
 
-int priority(char x)
-{
-    if(x == '(')
-        return 0;
-    if(x == '+' || x == '-')
-        return 1;
-    if(x == '*' || x == '/')
-        return 2;
-    return 0;
-}
-
-int main()
-{
-    char exp[100];
-    char *e, x;
-    printf("Enter the expression : ");
-    scanf("%s",exp);
-    printf("\n");
-    e = exp;
-    
-    while(*e != '\0')
-    {
-        if(isalnum(*e))
-            printf("%c ",*e);
-        else if(*e == '(')
-            push(*e);
-        else if(*e == ')')
-        {
-            while((x = pop()) != '(')
-                printf("%c ", x);
-        }
-        else
-        {
-            while(priority(stack[top]) >= priority(*e))
-                printf("%c ",pop());
-            push(*e);
-        }
-        e++;
+void pop(){
+    if(is_empty()){
+        return;
     }
-    
-    while(top != -1)
-    {
-        printf("%c ",pop());
-    }return 0;
+    else{
+        top--;
+    }
+}
+
+int main(){
+    stack[0] = '(';
+    int item, n;
+    char input[50], output[50];
+    char brac = ')';
+
+    printf("Enter string: ");
+    scanf("%s", input);
+    strncat(input, &brac, 1);
+
+    for(int i = 0; i < strlen(input); i++){
+
+        if(input[i] == '('){
+            push('(');
+        }
+        else if(input[i] == ')'){
+            while(stack[top] != '('){
+                strncat(output, &stack[top], 1);
+                pop();
+            }
+            pop();
+        }
+
+        else if(input[i] == '^') push('^');
+
+        else if(input[i] == '*' || input[i] == '/'){
+            if(stack[top] == '+' || stack[top] == '-'){
+                push(input[i]);
+            }
+            else if(stack[top] == '*' || stack[top] == '/'){
+                strncat(output, &stack[top], 1);
+                pop();
+                push(input[i]);
+            }
+            else{
+                strncat(output, &stack[top], 1);
+                pop();
+                i--;
+            }
+        }
+
+        else if(input[i] == '+' || input[i] == '-'){
+            if(stack[top] == '+' || stack[top] == '-'){
+                strncat(output, &stack[top], 1);
+                pop();
+                push(input[i]);
+            }
+            else{
+                strncat(output, &stack[top], 1);
+                pop();
+                i--;
+            }
+        }
+        
+        else{
+            strncat(output, &input[i], 1);
+        }
+    }
+
+    printf("%s", output);
 }

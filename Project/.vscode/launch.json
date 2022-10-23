@@ -1,15 +1,10 @@
 {
     "configurations": [
     {
-        "name": "(gdb) Launch",
+        "name": "(gdb) Attach",
         "type": "cppdbg",
-        "request": "launch",
-        "program": "enter program name, for example ${workspaceFolder}/a.exe",
-        "args": [],
-        "stopAtEntry": false,
-        "cwd": "${fileDirname}",
-        "environment": [],
-        "externalConsole": true,
+        "request": "attach",
+        "program": "enter program name, for example ${workspaceFolder}/a.exe",,
         "MIMode": "gdb",
         "miDebuggerPath": "/path/to/gdb",
         "setupCommands": [
