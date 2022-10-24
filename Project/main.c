@@ -11,6 +11,7 @@ struct trainDetails
     int sleeper;
     int Acsleeper;
     int distance;
+    int type;
 };
 
 struct train
@@ -43,7 +44,10 @@ void addTrain(struct trainDetails details)
 
 void displayTrain()
 {
+    system("cls");
     struct train *temp = head;
+    system("cls");
+    printf("Displaying all trains");
     while (temp != NULL)
     {
         printf("Train No: %d\n", temp->details.trainNo);
@@ -54,12 +58,15 @@ void displayTrain()
         printf("Sleeper: %d\n", temp->details.sleeper);
         printf("AC Sleeper: %d\n", temp->details.Acsleeper);
         printf("Distance: %d\n", temp->details.distance);
+        printf("Type: %d\n", temp->details.type);
         temp = temp->next;
+        printf("-----------------------------------------------------\n");
     }
 }
 
 struct trainDetails getTrainDetails()
 {
+    system("cls");
     struct trainDetails details;
     printf("Enter Train No: ");
     scanf("%d", &details.trainNo);
@@ -77,40 +84,123 @@ struct trainDetails getTrainDetails()
     scanf("%d", &details.Acsleeper);
     printf("Enter Distance: ");
     scanf("%d", &details.distance);
+    printf("Enter Type: ");
+    scanf("%d", &details.type);
     return details;
+}
+
+void deleteTrain()
+{
+    system("cls");
+    displayTrain();
+    int trainNo;
+    printf("\nWhich train do you want to delete? ");
+    printf("\nEnter Train No: ");
+    scanf("%d", &trainNo);
+    struct train *temp = head;
+    struct train *prev = NULL;
+    while (temp != NULL)
+    {
+        if (temp->details.trainNo == trainNo)
+        {
+            if (prev == NULL)
+            {
+                head = temp->next;
+            }
+            else
+            {
+                prev->next = temp->next;
+            }
+            free(temp);
+            break;
+        }
+        prev = temp;
+        temp = temp->next;
+    }
+}
+
+void adminMenu()
+{
+    int choice;
+    int trainNo;
+    struct trainDetails details;
+    do
+    {
+        system("cls");
+        printf("1. Add Train\n");
+        printf("2. Delete Train\n");
+        printf("3. Display Train\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+        case 1:
+            details = getTrainDetails();
+            addTrain(details);
+            break;
+        case 2:
+            deleteTrain();
+            break;
+        case 3:
+            displayTrain();
+            break;
+        case 4:
+            exit(0);
+            break;
+        default:
+            printf("Invalid choice");
+            break;
+        }
+        printf("\nPress any key to continue...");
+    } while (choice != 4);
 }
 
 void main()
 {
     while (1)
     {
+        system("cls");
         int choice;
-        printf("1. Add Train\n");
-        printf("2. Display Train\n");
-        printf("3. Exit\n");
+
+        printf("1. Book Train\n");
+        printf("2. Get Train Details\n");
+        printf("3. Cancel Train Ticket\n");
+        printf("4. Check Ticket Status\n");
+        printf("5. Admin Menu\n");
+        printf("6. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
+        int pass=0;
         switch (choice)
         {
         case 1:
-        {
-            struct trainDetails details = getTrainDetails();
-            addTrain(details);
+            // bookTrain();
             break;
-        }
         case 2:
-        {
-            displayTrain();
+
             break;
-        }
         case 3:
-        {
+            // cancelTrainTicket();
+            break;
+        case 4:
+            // checkTicketStatus();
+            break;
+        case 5:
+            printf("Enter password: ");
+            scanf("%d", &pass);
+            if (pass == 1234)
+            {
+                adminMenu();
+            }
+            else
+            {
+                printf("Invalid password");
+            }
+            break;
+        case 6:
             exit(0);
-        }
-        default:
-        {
-            printf("Invalid Choice\n");
-        }
+            break;
         }
     }
 }
