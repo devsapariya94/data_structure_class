@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-//Rate Of per Kilometer
+// Rate Of per Kilometer
 int type1SeatRate = 100;
 int type2SeatRate = 150;
 int type3SeatRate = 200;
@@ -10,13 +11,11 @@ int type1Sleeper = 200;
 int type2Sleeper = 250;
 int type3Sleeper = 300;
 
-
 int type1Acsleeper = 300;
 int type2Acsleeper = 350;
 int type3Acsleeper = 400;
 
-
-//Struct of Train Details
+// Struct of Train Details
 struct trainDetails
 {
     int trainNo;
@@ -30,7 +29,7 @@ struct trainDetails
     int type;
 };
 
-//For linked list
+// For linked list
 struct train
 {
     struct trainDetails details;
@@ -39,14 +38,15 @@ struct train
 
 struct train *head = NULL;
 
-void addTrain(struct trainDetails details);   //for adding train
-void displayTrain();    //for displaying train
-struct trainDetails getTrainDetails();  //for getting train details
-void deleteTrain(); //for deleting train
-void adminMenu();   //for admin menu
-void main();    //for main menu
+void addTrain(struct trainDetails details); // for adding train
+void displayTrain();                        // for displaying train
+struct trainDetails getTrainDetails();      // for getting train details
+void deleteTrain();                         // for deleting train
+void adminMenu();                           // for admin menu
+void main();                                // for main menu
+void searchTrain();                         // for searching train
 
-//For pause the Program
+// For pause the Program
 void pause(void)
 {
     printf("Press any key to continue...");
@@ -191,6 +191,35 @@ void adminMenu()
     } while (choice != 4);
 }
 
+void searchTrain(){
+    system("cls");
+    char source[20];
+    char destination[20];
+    printf("Enter Source: ");
+    scanf("%s", source);
+    printf("Enter Destination: ");
+    scanf("%s", destination);
+    struct train *temp = head;
+    while (temp != NULL)
+    {
+        if (strcmp(temp->details.source, source) == 0 && strcmp(temp->details.destination, destination) == 0)
+        {
+            printf("Train No: %d\n", temp->details.trainNo);
+            printf("Train Name: %s\n", temp->details.trainName);
+            printf("Source: %s\n", temp->details.source);
+            printf("Destination: %s\n", temp->details.destination);
+            printf("Seats: %d\n", temp->details.seats);
+            printf("Sleeper: %d\n", temp->details.sleeper);
+            printf("AC Sleeper: %d\n", temp->details.AcSleeper);
+            printf("Distance: %d\n", temp->details.distance);
+            printf("Type: %d\n", temp->details.type);
+            printf("-----------------------------------------------------\n");
+        }
+        temp = temp->next;
+    }
+    pause();
+}
+
 void main()
 {
     while (1)
@@ -199,7 +228,7 @@ void main()
         int choice;
 
         printf("1. Book Train\n");
-        printf("2. Get Train Details\n");
+        printf("2. Search Train\n");
         printf("3. Cancel Train Ticket\n");
         printf("4. Check Ticket Status\n");
         printf("5. Admin Menu\n");
@@ -213,7 +242,7 @@ void main()
             // bookTrain();
             break;
         case 2:
-
+            searchTrain();
             break;
         case 3:
             // cancelTrainTicket();
