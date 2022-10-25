@@ -22,6 +22,20 @@ struct train
 
 struct train *head = NULL;
 
+void addTrain(struct trainDetails details);
+void displayTrain();
+struct trainDetails getTrainDetails();
+void deleteTrain();
+void adminMenu();
+void main();
+
+void pause(void)
+{
+    printf("Press any key to continue...");
+    fflush(stdin);
+    getchar();
+}
+
 void addTrain(struct trainDetails details)
 {
     struct train *newTrain = (struct train *)malloc(sizeof(struct train));
@@ -40,6 +54,8 @@ void addTrain(struct trainDetails details)
         }
         temp->next = newTrain;
     }
+    printf("Train added successfully\n");
+    pause();
 }
 
 void displayTrain()
@@ -47,7 +63,7 @@ void displayTrain()
     system("cls");
     struct train *temp = head;
     system("cls");
-    printf("Displaying all trains");
+    printf("Displaying all trains\n");
     while (temp != NULL)
     {
         printf("Train No: %d\n", temp->details.trainNo);
@@ -62,6 +78,7 @@ void displayTrain()
         temp = temp->next;
         printf("-----------------------------------------------------\n");
     }
+    pause();
 }
 
 struct trainDetails getTrainDetails()
@@ -130,7 +147,7 @@ void adminMenu()
         printf("1. Add Train\n");
         printf("2. Delete Train\n");
         printf("3. Display Train\n");
-        printf("4. Exit\n");
+        printf("4. Return To Main Menu\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
         switch (choice)
@@ -146,13 +163,13 @@ void adminMenu()
             displayTrain();
             break;
         case 4:
-            exit(0);
+            main();
             break;
         default:
             printf("Invalid choice");
+            pause();
             break;
         }
-        printf("\nPress any key to continue...");
     } while (choice != 4);
 }
 
@@ -171,7 +188,7 @@ void main()
         printf("6. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
-        int pass=0;
+        int pass = 0;
         switch (choice)
         {
         case 1:
@@ -196,6 +213,7 @@ void main()
             else
             {
                 printf("Invalid password");
+                pause();
             }
             break;
         case 6:
