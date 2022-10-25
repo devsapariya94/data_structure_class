@@ -1,6 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//Rate Of per Kilometer
+int type1SeatRate = 100;
+int type2SeatRate = 150;
+int type3SeatRate = 200;
+
+int type1Sleeper = 200;
+int type2Sleeper = 250;
+int type3Sleeper = 300;
+
+
+int type1Acsleeper = 300;
+int type2Acsleeper = 350;
+int type3Acsleeper = 400;
+
+
+//Struct of Train Details
 struct trainDetails
 {
     int trainNo;
@@ -9,11 +25,12 @@ struct trainDetails
     char destination[20];
     int seats;
     int sleeper;
-    int Acsleeper;
+    int AcSleeper;
     int distance;
     int type;
 };
 
+//For linked list
 struct train
 {
     struct trainDetails details;
@@ -22,13 +39,14 @@ struct train
 
 struct train *head = NULL;
 
-void addTrain(struct trainDetails details);
-void displayTrain();
-struct trainDetails getTrainDetails();
-void deleteTrain();
-void adminMenu();
-void main();
+void addTrain(struct trainDetails details);   //for adding train
+void displayTrain();    //for displaying train
+struct trainDetails getTrainDetails();  //for getting train details
+void deleteTrain(); //for deleting train
+void adminMenu();   //for admin menu
+void main();    //for main menu
 
+//For pause the Program
 void pause(void)
 {
     printf("Press any key to continue...");
@@ -72,7 +90,7 @@ void displayTrain()
         printf("Destination: %s\n", temp->details.destination);
         printf("Seats: %d\n", temp->details.seats);
         printf("Sleeper: %d\n", temp->details.sleeper);
-        printf("AC Sleeper: %d\n", temp->details.Acsleeper);
+        printf("AC Sleeper: %d\n", temp->details.AcSleeper);
         printf("Distance: %d\n", temp->details.distance);
         printf("Type: %d\n", temp->details.type);
         temp = temp->next;
@@ -98,7 +116,7 @@ struct trainDetails getTrainDetails()
     printf("Enter Sleeper: ");
     scanf("%d", &details.sleeper);
     printf("Enter AC Sleeper: ");
-    scanf("%d", &details.Acsleeper);
+    scanf("%d", &details.AcSleeper);
     printf("Enter Distance: ");
     scanf("%d", &details.distance);
     printf("Enter Type: ");
